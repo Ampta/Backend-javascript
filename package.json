@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "create rest api for video sharing web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "backend",
+    "rest-api",
+    "api",
+    "ampta",
+    "shivam"
+  ],
+  "author": "Shivam Gupta",
+  "license": "ISC"
+}
