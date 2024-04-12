@@ -308,7 +308,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
       $set: { avatar: avatar.url },
     },
     { new: true }
-  );
+  ).select("-password");
 
   return res
     .status(200)
