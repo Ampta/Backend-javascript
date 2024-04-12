@@ -238,11 +238,15 @@ const refreshAccesstoken = asyncHandler(async (req, res) => {
 });
 
 const changeCurrentPassword = asyncHandler(async (req, res) => {
-  const { oldPassword, newPassword, confirmPassword } = req.body;
+  const { oldPassword, newPassword } = req.body;
 
-  if (!(newPassword === confirmPassword)) {
-    throw new ApiError(400, "new password and confirm password is not same");
+  if ([oldPassword, newPassword].some((field) => field?.trim() === "")) {
+    throw new ApiError(400, "All fields are required.");
   }
+
+  // if (!(newPassword === confirmPassword)) {
+  //   throw new ApiError(400, "new password and confirm password is not same");
+  // }
 
   const user = await User.findById(req.user?._id);
 
@@ -261,9 +265,11 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 });
 
 const getCurrentUser = asyncHandler(async (req, res) => {
+  const user = req.user;
+
   return res
     .status(200)
-    .json(200, req.user, "current user fetched successfully");
+    .json(new ApiResponse(200, { user }, "current user fetched successfully"));
 });
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
